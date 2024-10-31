@@ -1,0 +1,93 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+main {
+    flex: 1; /* Позволяет основному контенту занимать оставшееся пространство */
+}
+
+body {
+    font-family: "segoe print", serif;
+    line-height: 1.6;
+    height: 100%;
+    margin: 0;
+    background-image: url('back.jpg'); /* Укажите путь к вашему изображению */
+    background-size: cover; /* Растягиваем изображение на весь фон */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Не повторяем изображение */
+}
+
+header {
+    background: #FFF8DC;
+    color: #D2B48C;
+    padding: 10px 0;
+}
+
+footer {
+    text-align: left;
+    padding: 10px; 
+}
+
+p {
+    color: #A0522D;
+}
+
+nav ul {
+    display: flex; /* Используем Flexbox для выравнивания */
+    justify-content: flex-start; /* Выравниваем по левому краю */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+/* Изменение цвета ссылок */
+a {
+    color: #BC8F8F;
+}
+
+/* Изменение цвета при наведении */
+a:hover {
+    color: #D2691E;
+}
+
+
+h1{
+    text-align: left;
+
+}
+
+h2{
+    text-align: left;
+    color: #A0522D;
+}
+
+
+
+table {
+    width: 60%;
+    margin: 70px auto;
+    border-collapse: collapse;
+    background-color: #FFF8DC;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: #A0522D;
+}
+
+th {
+    background-color: #FFEBCD;
+    text-align: right;
+}
+
+td {
+    text-align: left;
+}
