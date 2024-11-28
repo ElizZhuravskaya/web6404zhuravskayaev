@@ -3,7 +3,7 @@
  * @param {*} n
  */
 function isInteger(n) {
-    return typeof n === 'number' && (num ^ 0) === n;
+    return typeof n === 'number' && (n ^ 0) === n;
 }
 
 /**
@@ -130,7 +130,7 @@ function getOperationFn(initialValue, operatorFn) {
  * console.log(generator()); // 7
  * console.log(generator()); // 9
  */
-function sequence(start, step) {
+function sequence(start = 0, step = 1) {
     let currentValue = start;
     return function generator() {
         const returnValue = currentValue;
@@ -154,28 +154,42 @@ function sequence(start, step) {
  * deepEqual({arr: [22, 33], text: 'text'}, {arr: [22, 3], text: 'text2'}) // false
  */
 function deepEqual(firstObject, secondObject) {
-    // если объекты равны
+
+    // равны?
     if (firstObject === secondObject) {
         return true;
-    }
-    // являются объектами?
-    if (typeof firstObject !== 'object' || firstObject === null ||
-        typeof secondObject !== 'object' || secondObject === null) {
-        return false; // Если это не объекты, возвращаем false
-    }
-    const firstKeys = Object.keys(firstObject);
-    const secondKeys = Object.keys(secondObject);
-    // количество ключей не равно?
-    if (firstKeys.length !== secondKeys.length) {
+       }
+      
+       // если NaN
+       if (Number.isNaN(firstObject) && Number.isNaN(secondObject)) {
+        return true;
+       }
+      
+       // Проверка на тип
+       if (typeof firstObject !== typeof secondObject) {
         return false;
-    }
-    // значения ключей равны?
-    for (const key of firstKeys) {
-        if (!secondKeys.includes(key) || !deepEqual(firstObject[key], secondObject[key])) {
-            return false; 
+       }
+      
+       // Проверка на объект
+       if (typeof firstObject !== 'object') {
+        return false;
+       }
+      
+       // Проверка на длину свойств
+       const keys1 = Object.keys(firstObject);
+       const keys2 = Object.keys(secondObject);
+       if (keys1.length !== keys2.length) {
+        return false;
+       }
+      
+       // Рекурсивное сравнение свойств
+       for (const key of keys1) {
+        if (!deepEqual(firstObject[key], secondObject[key])) {
+         return false;
         }
-    }
-    return true;
+       }
+      
+   return true;
 }
 
 module.exports = {
