@@ -22,8 +22,22 @@
     <main>
         <section>
             <h2>Краткая информация</h2>
-            <p>На данный момент я являюсь студеткой 4 курса в Самарском умниверсите. <br>Я учусь на направлении прикладная математика и информатика.</p>
-            <img src="SSAU.jpg" width="480" height="350" alt="Sam univ" />
+            <div class="grid-container">
+                <div class="grid-item">На данный момент я являюсь студенткой 4 курса в Самарском университете.</div>
+                <div class="grid-item">Я учусь на направлении прикладная математика и информатика.</div>
+                <div class="grid-item"><img src="SSAU.jpg" width="480" height="350" alt="Sam univ" /></div>
+            </div>
+
+<h2>Контактная форма</h2>
+            <form id="contact-form">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <label for="message">Сообщение:</label>
+    <textarea id="message" name="message" required></textarea>
+    <br>
+    <button type="submit">Отправить</button>
+</form>
         </section>
     </main>
 

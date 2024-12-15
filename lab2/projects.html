@@ -22,7 +22,8 @@
     <main>
         <section>
             <h2>Список проектов</h2>
-            <table>
+<button id="load-projects">Загрузить проекты</button>
+            <table id="projects-table">
                 <tr>
                     <th>Название проекта</th>
                     <th>Ссылка</th>
@@ -40,11 +41,59 @@
                 </tr>
             </table>
         </section>
+
     </main>
 
     <footer>
         <p>&copy; 2024 Портфолио</p>
     </footer>
   </div>
+
+<script>
+   document.getElementById('load-projects').addEventListener('click', function () {
+    const messageDiv = document.getElementById('message');
+    messageDiv.textContent = 'Загрузка проектов...';
+
+    // Запрос к локальному серверу
+    fetch('http://localhost:3000/api/projects')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка при загрузке данных');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const table = document.getElementById('projects-table');
+
+            // Очищаем ранее добавленные строки
+            const rows = table.querySelectorAll('tr.dynamic-row');
+            rows.forEach(row => row.remove());
+
+            // Добавляем строки в таблицу
+            data.forEach(project => {
+                const row = document.createElement('tr');
+                row.classList.add('dynamic-row');
+                row.innerHTML = `
+                    <td>${project.title}</td>
+                    <td><a href="${project.link}" target="_blank">Ссылка</a></td>
+                    <td align="center">${project.year}</td>
+                `;
+                table.appendChild(row);
+            });
+
+            // Сообщение об успешной загрузке
+            messageDiv.textContent = 'Проекты успешно загружены!';
+            messageDiv.style.color = 'green';
+        })
+        .catch(error => {
+            // Вывод сообщения об ошибке
+            messageDiv.textContent = `Ошибка: ${error.message}`;
+            messageDiv.style.color = 'red';
+        });
+});
+
+</script>
+
+
 </body>
 </html>

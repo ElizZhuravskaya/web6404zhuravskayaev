@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О себе</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <div class="container">
+    <header>
+        <h1>О себе</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О себе</a></li>
+                <li><a href="projects.html">Проекты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Краткая информация</h2>
+            <div class="grid-container">
+                <div class="grid-item">На данный момент я являюсь студенткой 4 курса в Самарском университете.</div>
+                <div class="grid-item">Я учусь на направлении прикладная математика и информатика.</div>
+                <div class="grid-item"><img src="SSAU.jpg" width="480" height="350" alt="Sam univ" /></div>
+            </div>
+
+<h2>Контактная форма</h2>
+            <form id="contact-form">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <label for="message">Сообщение:</label>
+    <textarea id="message" name="message" required></textarea>
+    <br>
+    <button type="submit">Отправить</button>
+</form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Портфолио</p>
+    </footer>
+  </div>
+
+<script>
+// Валидация Email
+        document.getElementById('email').addEventListener('input', function () {
+            const email = this.value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Шаблон для проверки email
+            if (!emailPattern.test(email)) {
+                this.style.borderColor = 'red';
+            } else {
+                this.style.borderColor = 'green';
+            }
+        });
+
+        // Валидация Сообщения
+        document.getElementById('message').addEventListener('input', function () {
+            if (this.value.length < 10) {
+                this.style.borderColor = 'red';
+            } else {
+                this.style.borderColor = 'green';
+            }
+        });
+
+        // Обработчик формы
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Останавливаем стандартное поведение формы
+
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Создаём объект для отправки
+            const data = {
+                email: email,
+                message: message
+            };
+
+            // Отправляем POST-запрос
+            fetch('https://server_tipo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при отправке данных');
+                }
+                return response.json();
+            })
+            .then(result => {
+                alert('Данные успешно отправлены!');
+                console.log(result);
+            })
+            .catch(error => {
+                alert('Ошибка: ' + error.message);
+            });
+        });
+</script>
+
+</body>
+</html>
