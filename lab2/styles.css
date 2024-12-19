@@ -40,6 +40,7 @@ nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    animation: fadeIn 2s ease-out;
 }
 
 nav ul li {
@@ -60,7 +61,7 @@ a:hover {
 
 h1{
     text-align: left;
-
+    animation: fadeIn 2s ease-out;
 }
 
 h2{
@@ -68,6 +69,17 @@ h2{
     color: #A0522D;
 }
 
+/* Анимация */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 
 table {
@@ -90,4 +102,61 @@ th {
 
 td {
     text-align: left;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background-color: #FFF8DC;
+    padding: 20px;
+    border: 1px solid #D2B48C;
+}
+
+.grid-item {
+    text-align: center;
+    padding: 10px;
+    font-size: 1.2em;
+    color: #A0522D;
+    border: 1px solid #D2B48C;
+    background-color: #FFEBCD;
+}
+
+/* Основные стили для кнопок */
+button {
+    background-color: #BC8F8F; /* Цвет фона кнопки */
+    color: #FFF; /* Цвет текста на кнопке */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #D2691E; 
+    transform: scale(1.1); 
+}
+
+button:active {
+    background-color: #A0522D; 
+}
+
+button:focus {
+    outline: none; 
+    animation: pulse 1s infinite;
+}
+
+/* Анимация кнопки */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
