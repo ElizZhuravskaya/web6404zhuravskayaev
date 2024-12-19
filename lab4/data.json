@@ -1,0 +1,11 @@
+{
+    "/projects": {
+        "get": {
+            "data": [
+                { "title": "Реализация кодирования сообщений", "link": "https://github.com/ElizZhuravskaya/TK_Zhuravskaya_Teplyakova", "year": 2024 },
+                { "title": "Реализация тестирования на Python", "link": "https://github.com/ElizZhuravskaya/6404zhuravskayaev/tree/main", "year": 2024 },
+                { "title": "Реализация web-сайта", "link": "https://github.com/ElizZhuravskaya/web6404zhuravskayaev.git", "year": 2024 }
+            ]
+        }
+    }
+}
