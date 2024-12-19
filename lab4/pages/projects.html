@@ -49,44 +49,40 @@
     </footer>
   </div>
 
-<script>
-// Обработчик нажатия на кнопку "Загрузить проекты"
-document.getElementById('load-projects').addEventListener('click', function() {
-    // Асинхронный запрос для получения данных с сервера
-    fetch('http://localhost:3000/projects')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Ошибка при загрузке данных');
-            }
-            return response.json();
-        })
-        .then(response => {
-            const projects = response.data; // Данные содержатся в поле data
-            
-            // Очистка таблицы перед загрузкой новых данных
-            const table = document.getElementById('projects-table');
-            const rows = table.getElementsByTagName('tr');
-            while (rows.length > 1) { // Удаляем все строки, кроме заголовка
-                table.deleteRow(1);
-            }
-
-            // Добавляем новые строки в таблицу
-            projects.forEach(project => {
-                const row = table.insertRow();
-                const cellTitle = row.insertCell(0);
-                const cellLink = row.insertCell(1);
-                const cellYear = row.insertCell(2);
-
-                cellTitle.textContent = project.title;
-                cellLink.innerHTML = `<a href="${project.link}" target="_blank">ссылка на гит</a>`;
-                cellYear.textContent = project.year;
+  <script>
+    document.getElementById('load-projects').addEventListener('click', function() {
+        fetch('http://localhost:3000/projects')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при загрузке данных');
+                }
+                return response.json();
+            })
+            .then(response => {
+                const projects = response.data; 
+                const table = document.getElementById('projects-table');
+                const rows = table.getElementsByTagName('tr');
+                while (rows.length > 1) { // Удаляем все строки, кроме заголовка
+                    table.deleteRow(1);
+                }
+    
+                // Добавляем новые строки в таблицу
+                projects.forEach(project => {
+                    const row = table.insertRow();
+                    const cellTitle = row.insertCell(0);
+                    const cellLink = row.insertCell(1);
+                    const cellYear = row.insertCell(2);
+    
+                    cellTitle.textContent = project.title;
+                    cellLink.innerHTML = `<a href="${project.link}" target="_blank">ссылка на гит</a>`;
+                    cellYear.textContent = project.year;
+                });
+            })
+            .catch(error => {
+                alert('Ошибка: ' + error.message);
             });
-        })
-        .catch(error => {
-            alert('Ошибка: ' + error.message);
-        });
-});
-</script>
-
+    });
+    </script>
+    
 </body>
 </html>
