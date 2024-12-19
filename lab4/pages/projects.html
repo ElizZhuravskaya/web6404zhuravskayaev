@@ -60,7 +60,9 @@ document.getElementById('load-projects').addEventListener('click', function() {
             }
             return response.json();
         })
-        .then(projects => {
+        .then(response => {
+            const projects = response.data; // Данные содержатся в поле data
+            
             // Очистка таблицы перед загрузкой новых данных
             const table = document.getElementById('projects-table');
             const rows = table.getElementsByTagName('tr');
